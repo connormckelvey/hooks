@@ -1,0 +1,32 @@
+#!/bin/sh
+':' //; exec "$(command -v nodejs || command -v node)" "$0" "$@"cd -
+
+/**
+ * # Wordmove Path Updater
+ * Post post checkout hook for git that updates the local wordpress path. 
+ * Great work working with teams where the environments are not identical.
+ *
+ * ## Installation
+ * To install save as post-checkout inside .git/hooks
+ * Make the hook executable with chmod +x ./git/hooks/post-checkout
+ * Make sure you have js-yaml installed globally: npm install -g js-yaml
+ *
+ * Connor McKelvey <connormckelvey@gmail.com>
+ */
+
+var fs = require('fs');
+var yaml = require('js-yaml'); //npm install -g ja-yaml
+
+try {
+  var movefile = yaml.safeLoad(fs.readFileSync('Movefile', 'utf8'));
+      movefile.local.wordpress_path = __dirname.split('/wp-content')[0];
+
+  fs.writeFileSync('Movefile', yaml.safeDump(movefile));
+  console.log('Updated Local Wordpress Path');
+
+} catch(e) {
+  console.log(e);
+  console.log('Could Not Update Local Wordpress Path');
+  process.exit(0);
+}
+
