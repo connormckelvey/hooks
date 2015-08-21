@@ -8,7 +8,7 @@
  *
  * ## Installation
  * To install save as post-checkout inside .git/hooks
- * Make the hook executable with chmod +x ./git/hooks/post-checkout
+ * Make the hook executable with chmod +x .git/hooks/post-checkout
  * Make sure you have js-yaml installed globally: npm install -g js-yaml
  *
  * Connor McKelvey <connormckelvey@gmail.com>
