@@ -15,7 +15,7 @@
  */
 
 var fs = require('fs');
-var yaml = require('js-yaml'); //npm install -g ja-yaml
+var yaml = require('js-yaml'); //npm install -g js-yaml
 
 try {
   var movefile = yaml.safeLoad(fs.readFileSync('Movefile', 'utf8'));
